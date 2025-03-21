@@ -29,7 +29,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-white shadow-sm">
+    <header className="bg-white dark:bg-gray-900 shadow-sm border-b border-border">
       <div className="container mx-auto py-4 px-4 flex justify-between items-center">
         <div className="flex items-center">
           <svg className="h-8 w-8 text-primary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,14 +41,14 @@ export default function Header() {
             />
           </svg>
           <Link href="/">
-            <a className="ml-2 text-2xl font-bold text-text font-inter">FitAI</a>
+            <a className="ml-2 text-2xl font-bold font-inter">FitAI</a>
           </Link>
         </div>
         
         <nav className="hidden md:flex space-x-6">
           {navItems.map((item) => (
             <Link key={item.path} href={item.path}>
-              <a className={`text-text font-medium hover:text-primary transition-colors ${location === item.path ? 'text-primary' : ''}`}>
+              <a className={`font-medium hover:text-primary transition-colors ${location === item.path ? 'text-primary' : ''}`}>
                 {item.name}
               </a>
             </Link>
@@ -63,7 +63,7 @@ export default function Header() {
           <div className="hidden md:block">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center text-sm font-medium text-text hover:text-primary transition-colors">
+                <Button variant="ghost" className="flex items-center text-sm font-medium hover:text-primary transition-colors">
                   <Avatar className="h-8 w-8 mr-2">
                     <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=John" alt="User" />
                     <AvatarFallback>JD</AvatarFallback>
@@ -92,7 +92,7 @@ export default function Header() {
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
-                  <MenuIcon className="h-6 w-6 text-text" />
+                  <MenuIcon className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="right">
@@ -110,7 +110,7 @@ export default function Header() {
                   {navItems.map((item) => (
                     <Link key={item.path} href={item.path}>
                       <a 
-                        className={`text-text font-medium py-2 hover:text-primary transition-colors ${location === item.path ? 'text-primary' : ''}`}
+                        className={`font-medium py-2 hover:text-primary transition-colors ${location === item.path ? 'text-primary' : ''}`}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {item.name}
@@ -119,13 +119,13 @@ export default function Header() {
                   ))}
                   <Link href="/profile">
                     <a 
-                      className={`text-text font-medium py-2 hover:text-primary transition-colors ${location === '/profile' ? 'text-primary' : ''}`}
+                      className={`font-medium py-2 hover:text-primary transition-colors ${location === '/profile' ? 'text-primary' : ''}`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Profile
                     </a>
                   </Link>
-                  <a className="text-text font-medium py-2 hover:text-primary transition-colors">
+                  <a className="font-medium py-2 hover:text-primary transition-colors">
                     Logout
                   </a>
                 </div>
