@@ -1,0 +1,10 @@
+{
+  "variant": "professional",
+  "primary": "#2ECC71",
+  "secondary": "#3498DB",
+  "accent": "#E74C3C",
+  "background": "#F8F9FA",
+  "foreground": "#2C3E50",
+  "appearance": "light",
+  "radius": 0.5
+}
