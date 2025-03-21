@@ -11,26 +11,26 @@ interface UserProfileProps {
 export default function UserProfile({ userData }: UserProfileProps) {
   if (!userData) {
     return (
-      <Card className="bg-white">
+      <Card>
         <CardContent className="pt-6">
           <div className="animate-pulse">
             <div className="flex items-center mb-4">
-              <div className="h-16 w-16 rounded-full bg-gray-200"></div>
+              <div className="h-16 w-16 rounded-full bg-muted"></div>
               <div className="ml-4 space-y-2">
-                <div className="h-5 w-32 bg-gray-200 rounded"></div>
-                <div className="h-4 w-48 bg-gray-200 rounded"></div>
+                <div className="h-5 w-32 bg-muted rounded"></div>
+                <div className="h-4 w-48 bg-muted rounded"></div>
               </div>
             </div>
-            <div className="border-t border-gray-100 pt-4">
-              <div className="h-4 w-32 bg-gray-200 rounded mb-3"></div>
+            <div className="border-t border-border pt-4">
+              <div className="h-4 w-32 bg-muted rounded mb-3"></div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <div className="h-4 w-16 bg-gray-200 rounded"></div>
-                  <div className="h-4 w-8 bg-gray-200 rounded"></div>
+                  <div className="h-4 w-16 bg-muted rounded"></div>
+                  <div className="h-4 w-8 bg-muted rounded"></div>
                 </div>
                 <div className="space-y-2">
-                  <div className="h-4 w-16 bg-gray-200 rounded"></div>
-                  <div className="h-4 w-16 bg-gray-200 rounded"></div>
+                  <div className="h-4 w-16 bg-muted rounded"></div>
+                  <div className="h-4 w-16 bg-muted rounded"></div>
                 </div>
               </div>
             </div>
@@ -50,7 +50,7 @@ export default function UserProfile({ userData }: UserProfileProps) {
   const targetWeightInLbs = userData.targetWeight ? Math.round(userData.targetWeight * 2.20462) : "--";
 
   return (
-    <Card className="bg-white">
+    <Card>
       <CardContent className="pt-6">
         <div className="flex items-center mb-4">
           <Avatar className="h-16 w-16">
@@ -58,29 +58,29 @@ export default function UserProfile({ userData }: UserProfileProps) {
             <AvatarFallback>{userData.name?.charAt(0) || "U"}</AvatarFallback>
           </Avatar>
           <div className="ml-4">
-            <h3 className="text-lg font-semibold text-text font-inter">{userData.name || "User"}</h3>
-            <p className="text-sm text-gray-500 font-nunito">{userData.email}</p>
+            <h3 className="text-lg font-semibold font-inter">{userData.name || "User"}</h3>
+            <p className="text-sm text-muted-foreground font-nunito">{userData.email}</p>
           </div>
         </div>
         
-        <div className="border-t border-gray-100 pt-4">
-          <h4 className="text-sm font-medium text-gray-500 mb-3 font-nunito">Your Details</h4>
+        <div className="border-t border-border pt-4">
+          <h4 className="text-sm font-medium text-muted-foreground mb-3 font-nunito">Your Details</h4>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <p className="text-gray-500">Age</p>
-              <p className="font-medium text-text">{userData.age || "--"}</p>
+              <p className="text-muted-foreground">Age</p>
+              <p className="font-medium">{userData.age || "--"}</p>
             </div>
             <div>
-              <p className="text-gray-500">Height</p>
-              <p className="font-medium text-text">{formattedHeight}</p>
+              <p className="text-muted-foreground">Height</p>
+              <p className="font-medium">{formattedHeight}</p>
             </div>
             <div>
-              <p className="text-gray-500">Goal</p>
-              <p className="font-medium text-text">{userData.fitnessGoal || "--"}</p>
+              <p className="text-muted-foreground">Goal</p>
+              <p className="font-medium">{userData.fitnessGoal || "--"}</p>
             </div>
             <div>
-              <p className="text-gray-500">Target</p>
-              <p className="font-medium text-text">{targetWeightInLbs} lbs</p>
+              <p className="text-muted-foreground">Target</p>
+              <p className="font-medium">{targetWeightInLbs} lbs</p>
             </div>
           </div>
         </div>

@@ -109,17 +109,17 @@ export default function MetricsForm({ userData }: MetricsFormProps) {
 
   if (!userData) {
     return (
-      <Card className="bg-white">
+      <Card>
         <CardHeader>
           <CardTitle className="text-lg">Update Your Metrics</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="animate-pulse space-y-4">
-            <div className="h-10 bg-gray-200 rounded"></div>
-            <div className="h-10 bg-gray-200 rounded"></div>
-            <div className="h-10 bg-gray-200 rounded"></div>
-            <div className="h-10 bg-gray-200 rounded"></div>
-            <div className="h-10 bg-gray-200 rounded"></div>
+            <div className="h-10 bg-muted rounded"></div>
+            <div className="h-10 bg-muted rounded"></div>
+            <div className="h-10 bg-muted rounded"></div>
+            <div className="h-10 bg-muted rounded"></div>
+            <div className="h-10 bg-muted rounded"></div>
           </div>
         </CardContent>
       </Card>
@@ -127,9 +127,9 @@ export default function MetricsForm({ userData }: MetricsFormProps) {
   }
 
   return (
-    <Card className="bg-white">
+    <Card>
       <CardHeader>
-        <CardTitle className="text-lg font-semibold text-text font-inter">Update Your Metrics</CardTitle>
+        <CardTitle className="text-lg font-semibold font-inter">Update Your Metrics</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -292,7 +292,8 @@ export default function MetricsForm({ userData }: MetricsFormProps) {
             <div className="mt-6">
               <Button 
                 type="submit" 
-                className="w-full bg-primary hover:bg-primary/90 text-white"
+                className="w-full"
+                variant="default"
                 disabled={updateMetricsMutation.isPending}
               >
                 {updateMetricsMutation.isPending ? (
