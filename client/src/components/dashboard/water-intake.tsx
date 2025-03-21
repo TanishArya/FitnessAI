@@ -49,7 +49,7 @@ export default function WaterIntake({ userId }: WaterIntakeProps) {
 
   if (isLoading) {
     return (
-      <Card className="bg-white">
+      <Card>
         <CardHeader className="pb-2">
           <CardTitle className="text-lg">Water Intake</CardTitle>
         </CardHeader>
@@ -68,12 +68,12 @@ export default function WaterIntake({ userId }: WaterIntakeProps) {
 
   if (error) {
     return (
-      <Card className="bg-white">
+      <Card>
         <CardHeader className="pb-2">
           <CardTitle className="text-lg">Water Intake</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-red-500">
+          <p className="text-sm text-destructive">
             Failed to load water intake data. Please try again later.
           </p>
         </CardContent>
@@ -85,11 +85,11 @@ export default function WaterIntake({ userId }: WaterIntakeProps) {
   const glassesFilled = Math.floor((data?.amount || 0) / 0.2);
   
   return (
-    <Card className="bg-white">
+    <Card>
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg font-semibold text-text font-inter">Water Intake</CardTitle>
-          <Badge variant="outline" className="text-xs font-medium bg-secondary bg-opacity-10 text-secondary">
+          <CardTitle className="text-lg font-semibold font-inter">Water Intake</CardTitle>
+          <Badge variant="outline" className="text-xs font-medium text-secondary">
             {data?.target}L Target
           </Badge>
         </div>
@@ -97,8 +97,8 @@ export default function WaterIntake({ userId }: WaterIntakeProps) {
       
       <CardContent>
         <div className="mb-2 flex justify-between items-center">
-          <span className="text-sm text-gray-500">Today's progress</span>
-          <span className="text-sm font-medium text-text">
+          <span className="text-sm text-muted-foreground">Today's progress</span>
+          <span className="text-sm font-medium">
             {data?.amount.toFixed(1)}L / {data?.target}L
           </span>
         </div>
@@ -113,12 +113,8 @@ export default function WaterIntake({ userId }: WaterIntakeProps) {
               <Button
                 key={glassIndex}
                 size="sm"
-                variant="outline"
-                className={`h-8 rounded-full ${
-                  isFilled 
-                    ? "bg-secondary bg-opacity-20 text-secondary" 
-                    : "bg-secondary bg-opacity-10 hover:bg-secondary hover:bg-opacity-20 text-secondary"
-                }`}
+                variant={isFilled ? "secondary" : "outline"}
+                className="h-8 rounded-full p-0"
                 onClick={() => handleAddWater(glassIndex)}
                 disabled={isFilled || addWaterMutation.isPending}
               >

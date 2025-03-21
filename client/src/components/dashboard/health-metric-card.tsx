@@ -65,15 +65,15 @@ export default function HealthMetricCard({
       : "text-secondary";
 
   return (
-    <Card className="bg-white">
+    <Card>
       <CardContent className="pt-4">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-sm font-medium text-gray-500 font-nunito">{title}</h3>
+          <h3 className="text-sm font-medium text-muted-foreground font-nunito">{title}</h3>
           {renderIcon()}
         </div>
         <div className="flex items-baseline">
-          <span className="text-2xl font-bold text-text">{value}</span>
-          {unit && <span className="ml-1 text-sm text-gray-500">{unit}</span>}
+          <span className="text-2xl font-bold">{value}</span>
+          {unit && <span className="ml-1 text-sm text-muted-foreground">{unit}</span>}
         </div>
         {change && (
           <div className={`mt-2 text-xs ${changeColorClass} font-medium flex items-center`}>

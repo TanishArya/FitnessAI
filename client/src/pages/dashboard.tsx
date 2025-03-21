@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import HealthMetricCard from "@/components/dashboard/health-metric-card";
-import FitnessRecommendations from "@/components/dashboard/fitness-recommendations";
+import StatsDashboard from "@/components/dashboard/stats-dashboard";
 import WorkoutOfTheDay from "@/components/dashboard/workout-of-the-day";
-import NutritionRecommendations from "@/components/dashboard/nutrition-recommendations";
-import MealPlan from "@/components/dashboard/meal-plan";
 import WaterIntake from "@/components/dashboard/water-intake";
 import UserProfile from "@/components/profile/user-profile";
 import MetricsForm from "@/components/profile/metrics-form";
@@ -53,10 +51,10 @@ export default function Dashboard() {
     return (
       <div className="py-10 text-center">
         <div className="animate-pulse flex flex-col items-center">
-          <div className="h-12 w-3/4 bg-gray-200 rounded-md mb-4"></div>
+          <div className="h-12 w-3/4 bg-gray-200 dark:bg-gray-700 rounded-md mb-4"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="h-32 bg-gray-200 rounded-standard"></div>
+              <div key={i} className="h-32 bg-gray-200 dark:bg-gray-700 rounded-standard"></div>
             ))}
           </div>
         </div>
@@ -67,30 +65,30 @@ export default function Dashboard() {
   return (
     <div>
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-text mb-6 font-inter">Your Fitness Dashboard</h2>
+        <h2 className="text-2xl font-bold mb-6 font-inter">Your Fitness Dashboard</h2>
         
         {/* Tab Navigation */}
-        <div className="flex flex-wrap border-b border-gray-200 mb-6">
+        <div className="flex flex-wrap border-b border-gray-200 dark:border-gray-700 mb-6">
           <button 
-            className={`px-4 py-2 font-medium ${activeTab === "overview" ? "text-text border-b-2 border-primary -mb-px" : "text-gray-500 hover:text-text transition-colors"}`}
+            className={`px-4 py-2 font-medium ${activeTab === "overview" ? "border-b-2 border-primary -mb-px" : "text-muted-foreground hover:text-foreground transition-colors"}`}
             onClick={() => setActiveTab("overview")}
           >
             Overview
           </button>
           <button 
-            className={`px-4 py-2 font-medium ${activeTab === "profile" ? "text-text border-b-2 border-primary -mb-px" : "text-gray-500 hover:text-text transition-colors"}`}
+            className={`px-4 py-2 font-medium ${activeTab === "profile" ? "border-b-2 border-primary -mb-px" : "text-muted-foreground hover:text-foreground transition-colors"}`}
             onClick={() => setActiveTab("profile")}
           >
             Profile
           </button>
           <button 
-            className={`px-4 py-2 font-medium ${activeTab === "history" ? "text-text border-b-2 border-primary -mb-px" : "text-gray-500 hover:text-text transition-colors"}`}
+            className={`px-4 py-2 font-medium ${activeTab === "history" ? "border-b-2 border-primary -mb-px" : "text-muted-foreground hover:text-foreground transition-colors"}`}
             onClick={() => setActiveTab("history")}
           >
             History
           </button>
           <button 
-            className={`px-4 py-2 font-medium ${activeTab === "settings" ? "text-text border-b-2 border-primary -mb-px" : "text-gray-500 hover:text-text transition-colors"}`}
+            className={`px-4 py-2 font-medium ${activeTab === "settings" ? "border-b-2 border-primary -mb-px" : "text-muted-foreground hover:text-foreground transition-colors"}`}
             onClick={() => setActiveTab("settings")}
           >
             Settings
@@ -137,26 +135,77 @@ export default function Dashboard() {
         </div>
       </div>
       
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left Column - Profile and User Input */}
-        <div className="lg:col-span-1 space-y-6">
+      {activeTab === "overview" && (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Left Column - Profile and User Input */}
+          <div className="lg:col-span-1 space-y-6">
+            <UserProfile userData={userData} />
+            <MetricsForm userData={userData} />
+          </div>
+          
+          {/* Main Content - Statistics Dashboard */}
+          <div className="lg:col-span-2 space-y-6">
+            <StatsDashboard />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <WorkoutOfTheDay />
+              <WaterIntake userId={DEFAULT_USER_ID} />
+            </div>
+          </div>
+        </div>
+      )}
+      
+      {activeTab === "profile" && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <UserProfile userData={userData} />
           <MetricsForm userData={userData} />
         </div>
-        
-        {/* Middle Column - Fitness Recommendations */}
-        <div className="lg:col-span-1 space-y-6">
-          <FitnessRecommendations userId={DEFAULT_USER_ID} />
-          <WorkoutOfTheDay />
+      )}
+      
+      {activeTab === "history" && (
+        <div className="space-y-6">
+          <StatsDashboard />
         </div>
-        
-        {/* Right Column - Nutrition Recommendations */}
-        <div className="lg:col-span-1 space-y-6">
-          <NutritionRecommendations userId={DEFAULT_USER_ID} />
-          <MealPlan userId={DEFAULT_USER_ID} />
-          <WaterIntake userId={DEFAULT_USER_ID} />
+      )}
+      
+      {activeTab === "settings" && (
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-card rounded-lg p-6">
+            <h3 className="text-lg font-medium mb-4">Account Settings</h3>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center py-2 border-b border-border">
+                <div>
+                  <h4 className="font-medium">Email Notifications</h4>
+                  <p className="text-sm text-muted-foreground">Receive weekly progress reports</p>
+                </div>
+                <div className="form-control">
+                  <input type="checkbox" className="toggle" defaultChecked />
+                </div>
+              </div>
+              
+              <div className="flex justify-between items-center py-2 border-b border-border">
+                <div>
+                  <h4 className="font-medium">Data Sharing</h4>
+                  <p className="text-sm text-muted-foreground">Share anonymous data for app improvement</p>
+                </div>
+                <div className="form-control">
+                  <input type="checkbox" className="toggle" defaultChecked />
+                </div>
+              </div>
+              
+              <div className="flex justify-between items-center py-2 border-b border-border">
+                <div>
+                  <h4 className="font-medium">Units</h4>
+                  <p className="text-sm text-muted-foreground">Switch between imperial and metric</p>
+                </div>
+                <select className="select select-bordered w-36">
+                  <option>Imperial (lbs)</option>
+                  <option>Metric (kg)</option>
+                </select>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

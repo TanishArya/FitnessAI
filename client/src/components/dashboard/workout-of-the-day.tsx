@@ -13,11 +13,11 @@ const exercises = [
 
 export default function WorkoutOfTheDay() {
   return (
-    <Card className="bg-white">
+    <Card>
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg font-semibold text-text font-inter">Today's Workout</CardTitle>
-          <Badge variant="outline" className="text-xs font-medium bg-accent bg-opacity-10 text-accent">
+          <CardTitle className="text-lg font-semibold font-inter">Today's Workout</CardTitle>
+          <Badge variant="outline" className="text-xs font-medium text-accent">
             25 min
           </Badge>
         </div>
@@ -41,12 +41,12 @@ export default function WorkoutOfTheDay() {
         <div className="space-y-3 px-6">
           {exercises.map((exercise, index) => (
             <div key={exercise.id} className="flex items-center">
-              <div className="h-8 w-8 rounded-full bg-primary bg-opacity-10 flex items-center justify-center text-primary font-medium">
+              <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-medium">
                 {index + 1}
               </div>
               <div className="ml-3">
-                <h5 className="text-sm font-medium text-text">{exercise.name}</h5>
-                <p className="text-xs text-gray-500">{exercise.instruction}</p>
+                <h5 className="text-sm font-medium">{exercise.name}</h5>
+                <p className="text-xs text-muted-foreground">{exercise.instruction}</p>
               </div>
             </div>
           ))}
@@ -54,7 +54,7 @@ export default function WorkoutOfTheDay() {
       </CardContent>
       
       <CardFooter className="mt-6">
-        <Button className="w-full bg-primary hover:bg-primary/90 text-white">
+        <Button className="w-full" variant="default">
           <Play className="h-4 w-4 mr-2" />
           Start Workout
         </Button>
